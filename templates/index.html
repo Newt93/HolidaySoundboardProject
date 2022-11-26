@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Drum Kit</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+    </style>
+</head>
+<body>
+<!--Greeting-->
+<!--Page text starts here-->
+<div class="container-fluid">
+    <h1>Happy Holidays!</h1><br>
+    <h2>Welcome to L3akz Holiday Soundboard</h2>
+    <p>Welcome everyone to my Holiday Soundboard. My wife and I want to wish you a Merry Christmas and Happy Holidays from our family to
+        yours!</p>
+    <p>
+        If you haven't checked out mine and my wife's Youtubes,
+        you can check them out here<br>
+        <a href="https://www.youtube.com/EmoryValentine" class="emyt">Emory's Youtube</a><br>
+        <a href="https://www.youtube.com/@l3akzgaming" class="tyyt">Tyler's Youtube</a>
+    </p>
+</div>
+
+<!-- JavaScript Soundboard -->
+<div class="keys">
+    <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">Acapella Blue Christmas</span>
+    </div>
+    <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">Jingle Bell Jam</span>
+    </div>
+    <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">Christmas Box</span>
+    </div>
+    <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">Christmas Melody</span>
+    </div>
+    <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">Christmas Tale Symphony</span>
+    </div>
+    <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound">Happy Holidays!</span>
+    </div>
+    <div data-key="74" class="key">
+        <kbd>J</kbd>
+        <span class="sound">Merry Christmas!</span>
+    </div>
+    <div data-key="75" class="key">
+        <kbd>K</kbd>
+        <span class="sound">Christmas Elf</span>
+    </div>
+    <div data-key="76" class="key">
+        <kbd>L</kbd>
+        <span class="sound">Chipmunking Around</span>
+    </div>
+</div>
+
+<!--About the app page // the Soundboard-->
+<center>
+    <p>Please enjoy this specially curated holiday soundboard!</p>
+    <p>Made by Tyler a.k.a. L3akz</p>
+</center>
+<br>
+<center><a class="LTPic" href="https://imgbox.com/eIL6kqE9" target="_blank"><img
+        src="https://thumbs2.imgbox.com/b5/e3/eIL6kqE9_t.jpg" alt="image host"/></a></center>
+
+<!-- Soundfiles -->
+<audio data-key="65" src="../static/BlueChristmasVocal.mp3"></audio>
+<audio data-key="83" src="../static/TrapJingleBells.wav"></audio>
+<audio data-key="68" src="../static/ChristmasLoop.wav"></audio>
+<audio data-key="70" src="../static/Xmasmelody.wav"></audio>
+<audio data-key="71" src="../static/XmasTale.mp3"></audio>
+<audio data-key="72" src="../static/happyholidaysvocal.wav"></audio>
+<audio data-key="74" src="../static/MerryChristmasAudio.wav"></audio>
+<audio data-key="75" src="../static/ChristmasElf.wav"></audio>
+<audio data-key="76" src="../static/Chipmunks.mp3"></audio>
+
+<!-- JavaScript for the Keyboard -->
+<script>
+        function removeTransition(e) {
+      if (e.propertyName !== 'transform') return;
+      e.target.classList.remove('playing');
+    }
+
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+      if (!audio) return;
+
+      key.classList.add('playing');
+      audio.currentTime = 0;
+      audio.play();
+    }
+
+    const keys = Array.from(document.querySelectorAll('.key'));
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
+</script>
+<!-- Bootstrap JavaScript CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>
